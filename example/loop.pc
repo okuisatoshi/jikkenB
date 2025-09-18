@@ -1,0 +1,12 @@
+int main()
+{
+    int n; int c;
+    c = 0;
+    n = 2147483647;
+    while (n > 0) {
+        c = c + 1;
+        n = n - 1;
+    }
+    print c;
+}
+

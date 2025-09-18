@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+    <div id="output"></div>
+    <script src="coi-serviceworker.js"></script>
+    <script defer type="module">
+    import { init, runWasix } from "https://unpkg.com/@wasmer/sdk@latest/dist/index.mjs";
+
+    await init();
+
+    const mod = await WebAssembly.compileStreaming(fetch('fib.wasm'))
+    const run = await runWasix(mod, {});
+    const { stdout } = await run.wait();
+    document.getElementById('output').innerText = stdout;
+    </script>
+</body>
+</html>

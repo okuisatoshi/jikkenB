@@ -1,0 +1,13 @@
+int main()
+{
+    print 2;
+    int n; int i;
+    n = 100000;
+    i = 3;
+    while (i < n) {
+        int j; j = 2;
+        while ((i % j) * (j * j <= i)) j = j + 1;
+        if (j * j > i) print i;
+        i = i + 2;
+    }
+}

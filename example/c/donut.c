@@ -1,0 +1,124 @@
+// donut.c without a math library
+// (https://www.a1k0n.net/2021/01/13/optimizing-donut.html)
+// のpicoc-c版
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main()
+{
+    int b[1760];
+    int z[1760];
+    int i; int j; int k; int sA; int cA; int sB; int cB; int t;
+    sA = 1024; cA = 0; sB = 1024; cB = 0;
+    while (1) {
+        k = 0;
+        while (k < 1760) {
+            b[k] = 32;
+            z[k] = 127;
+            k = k + 1;
+        }
+        int sj; int cj;
+        sj = 0; cj = 1024;
+        j = 0;
+        while (j < 90) {
+            int si; int ci;
+            si = 0; ci = 1024;
+            i = 0;
+            while (i < 324) {
+                int R1; int R2; int K2;
+                R1 = 1; R2 = 2048; K2 = 5120 * 1024;
+
+                int x0; int x1; int x2; int x3;
+                int x4; int x5; int x6; int x7;
+                int x; int y; int N;
+                x0 = R1 * cj + R2;
+                x1 = ci * x0 / 1024;
+                x2 = cA * sj / 1024;
+                x3 = si * x0 / 1024;
+                x4 = R1 * x2 - (sA * x3 / 1024);
+                x5 = sA * sj / 1024;
+                x6 = K2 + R1 * 1024 * x5 + cA * x3;
+                x7 = cj * si / 1024;
+                x = 40 + 30 * (cB * x1 - sB * x4) / x6;
+                y = 12 + 15 * (cB * x4 + sB * x1) / x6;
+                N = ((((0 - cA * x7) - cB * (((0 - sA * x7) / 1024) + x2)
+                                     - ci * (cj * sB / 1024)) / 1024) - x5) / 128;
+
+                int o; int zz;
+                o = x + 80 * y;
+                zz = (x6 - K2) / (1024 * 32);
+                if (y < 22)
+                    if (y > 0)
+                        if (x > 0)
+                            if (x < 80)
+                                if (zz < z[o]) {
+                                    z[o] = zz;
+                                    if (N == 1)  b[o] =  44;  // ','
+                                    if (N == 2)  b[o] =  45;  // '-'
+                                    if (N == 3)  b[o] = 126;  // '~'
+                                    if (N == 4)  b[o] =  58;  // ':'
+                                    if (N == 5)  b[o] =  59;  // ';'
+                                    if (N == 6)  b[o] =  61;  // '='
+                                    if (N == 7)  b[o] =  33;  // '!'
+                                    if (N == 8)  b[o] =  42;  // '*'
+                                    if (N == 9)  b[o] =  35;  // '#'
+                                    if (N == 10) b[o] =  36;  // '$'
+                                    if (N == 11) b[o] =  64;  // '@'
+                                    if (N <= 0)  b[o] =  46;  // '.'
+                                }
+                // rotate i:
+                //R(5, 8, ci, si)
+                t  = ci;
+                ci = ci - (5 * si / 256);
+                si = si + (5 * t  / 256);
+                t  = (3145728 - ci * ci - si * si) / 2048;
+                ci = ci * t / 1024;
+                si = si * t / 1024;
+
+                i  = i + 1;
+            }
+            // rotate j:
+            //R(9, 7, cj, sj)
+            t  = cj;
+            cj = cj - (9 * sj / 128);
+            sj = sj + (9 * t  / 128);
+            t  = (3145728 - cj * cj - sj * sj) / 2048;
+            cj = cj * t / 1024;
+            sj = sj * t / 1024;
+
+            j = j + 1;
+        }
+        k = 0;
+        while (k < 1761) { // 1760にすると最下行にゴミが残るのでこれで正しい
+            if (k % 80)
+                putchar(b[k]);
+            else
+                putchar(10);
+            k = k + 1;
+        }
+        //R(5, 7, cA, sA);
+        t  = cA;
+        cA = cA - (5 * sA / 128);
+        sA = sA + (5 * t  / 128);
+        t  = (3145728 - cA * cA - sA * sA) / 2048;
+        cA = cA * t / 1024;
+        sA = sA * t / 1024;
+
+        //R(5, 8, cB, sB);
+        t  = cB;
+        cB = cB - (5 * sB / 256);
+        sB = sB + (5 * t  / 256);
+        t  = (3145728 - cB * cB - sB * sB) / 2048;
+        cB = cB * t / 1024;
+        sB = sB * t / 1024;
+
+        usleep(15000);
+        putchar(27); // == 0x1b == 033
+        putchar(91); // '['
+        putchar(50); // '2'
+        putchar(51); // '3'
+        putchar(65); // 'A'
+    }
+}
+

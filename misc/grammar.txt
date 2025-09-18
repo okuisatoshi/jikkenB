@@ -1,0 +1,12 @@
+Program   ::= 'int' 'id' '(' ')' Block
+Block     ::= '{' ( Decl | Statement )* '}'
+Decl      ::= 'int' id ';'
+Statement ::= Assign_st | Print_st | Scan_st | While_st | Block
+Assign_st ::= 'id' '=' Expr ';'
+Print_st  ::= 'print' Expr ';'
+Scan_st   ::= 'scan' 'id' ';'
+While_st  ::= 'while' '(' Expr ')' Statement
+Expr      ::= Additive_1 ( ( '<' | '>' | '<=' | '>=') Additive_2 )*
+Additive  ::= Term_1 ( ( '+' | '-' ) Term_2 )*
+Term      ::= Factor_1 ( ( '*' | '/' | '%' ) Factor_2 )*
+Factor    ::= 'id' | 'num' | '(' Expr ')'

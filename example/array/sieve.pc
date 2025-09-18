@@ -1,0 +1,28 @@
+int main()
+{
+    int n; int i;
+    n = 10000;
+    int xs[10000];
+    i = 2;
+    while (i < n) {
+        xs[i] = 1;
+        i = i + 1;
+    }
+    i = 2;
+    while (i < n) {
+        if (xs[i]) {
+            int p;
+            p = i;
+            print p;
+            xs[p] = 0;
+            int k;
+            k = p * p;
+            while (k < n) {
+                xs[k] = 0;
+                k = k + p;
+            }
+        }
+        i = i + 1;
+    }
+}
+
