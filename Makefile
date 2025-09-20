@@ -28,6 +28,10 @@ debug:
 wasmer:
 	curl https://get.wasmer.io -sSfL | sh
 
+asciinema:
+	curl -o asciinema -L https://github.com/asciinema/asciinema/releases/download/v3.0.0/asciinema-x86_64-unknown-linux-musl
+	chmod a+x asciinema
+
 zig:
 	mkdir -p zig
 	curl -qL https://ziglang.org/download/0.15.1/zig-x86_64-linux-0.15.1.tar.xz | tar Jx -C zig --strip-components 1
