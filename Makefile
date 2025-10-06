@@ -27,6 +27,7 @@ debug:
 
 wasmer:
 	curl https://get.wasmer.io -sSfL | sh
+	. ~/.bashrc
 
 asciinema:
 	curl -o asciinema -L https://github.com/asciinema/asciinema/releases/download/v3.0.0/asciinema-x86_64-unknown-linux-musl
