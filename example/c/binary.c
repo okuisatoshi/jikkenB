@@ -7,5 +7,5 @@ int main()
         if (n % 2) a = a * x % m;
         x = x * x % m;
     }
-    printf("%d\n", a); // 966
+    printf("%d\n", a);
 }

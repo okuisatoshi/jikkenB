@@ -15,5 +15,5 @@ int main()
         x = x * x % m;
         n = n / 2;
     }
-    print a; // 966
+    print a;
 }
