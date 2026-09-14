@@ -1,0 +1,10 @@
+int main() {
+    int a; a = 0;
+    int b; b = 1;
+    int n; n = 30;
+    while (n > 0) {
+        print b;
+        int c; c = a; a = b; b = b + c;
+        n = n - 1;
+    }
+}

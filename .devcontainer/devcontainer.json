@@ -1,0 +1,18 @@
+{
+    "name": "Picoc Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                "llvm-vs-code-extensions.vscode-clangd"
+            ]
+        }
+    },
+    "remoteUser": "ubuntu",
+    "updateRemoteUserUID": true
+}

@@ -1,0 +1,28 @@
+#
+# 基本設定
+#
+# LLVMスタイルで
+BasedOnStyle: LLVM
+# 字下げ幅はスペース4個
+IndentWidth: 4
+# 120文字までの長い行を許す
+ColumnLimit: 120
+
+#
+# アラインに関する設定
+#
+# 末尾のバックスラッシュを整列しない
+AlignEscapedNewlines: DontAlign
+# 末尾のコメントを整列
+AlignTrailingComments: true
+
+#
+# 短い本体の扱い
+#
+# {}のない短いif文の本体を条件式と同じ行に
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+# {}のない短いwhile文の本体を条件式と同じ行に
+AllowShortLoopsOnASingleLine: true
+# 短い関数を1行にしない
+AllowShortFunctionsOnASingleLine: None
+

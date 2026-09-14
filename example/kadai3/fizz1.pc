@@ -1,0 +1,13 @@
+int main() {
+    int i;
+    i = 0;
+    while (i < 100) {
+        if (i % 3)
+            if (i % 5) print i;
+            else print 500;
+        else
+            if (i % 5) print 300;
+            else print 1500;
+        i = i + 1;
+    }
+}
