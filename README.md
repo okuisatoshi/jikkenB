@@ -59,7 +59,6 @@
 
 9 directories, 46 files
 
-cat example/prime.pc | ./picoc | ./misc/cfg.sh png >prime.png```
 - `tidwall`ディレクトリ以下は[tidwall氏の標準Cによるハッシュ表の実装](https://github.com/tidwall/hashmap.c)でMITライセンスです
 - gzuidhof氏の[`coi-serviceworker.js`](https://github.com/gzuidhof/coi-serviceworker)はMITライセンスです
 
