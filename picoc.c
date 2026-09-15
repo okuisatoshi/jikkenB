@@ -65,15 +65,16 @@ void num(char *ret) {
 
 void factor(char *ret) {
     ENTER();
-    char x[MAX_TMP_LEN];
-    int v = vsuffix++;
     switch (token) {
-    case TK_ID:
+    case TK_ID: {
+        char x[MAX_TMP_LEN];
         lval(x);
         // 代入の左辺以外に出現する左辺値は参照を外す
+        int v = vsuffix++;
         printf("  %%t.%d = load i32, ptr %s\n", v, x);
         sprintf(ret, "%%t.%d", v);
         break;
+    }
     case TK_NUM:
         num(ret);
         break;
