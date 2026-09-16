@@ -6,14 +6,14 @@ TARGET := $(shell llvm-config --host-target)
 CFLAGS := -Wall -std=c11 -g3 $(CFLAGS) -O0 -target $(TARGET) -static
 SHELL  := /bin/bash
 
-# MacOS26のApple Container (container)は全く問題なく使用できる
-# Windows11のWSL Containers (wslc.exe, 別名container.exe)はPowerShellからの使用なら問題ない
-# (WSL2からの利用は現状，遅すぎて使えない)
-# Windows11用のgnu makeのインストール: winget install ezwinports.make
+# Apple Container (MacOS) / WSL Containers (Windows11) の利用
+# 注: 現状wslc.exe (別名:container.exe)をWSL2から用いると遅くて使い物にならない
+#     jikkenBリポジトリをCドライブ配下に置いてPowerShellから用いるとよい
+#     Windows11用のgnu makeのインストール: winget install ezwinports.make
 CONTAINER := container
 
 # Dev Containersの利用
-# vscodeや以下のdevcontainers/cliを用いる
+# https://code.visualstudio.com/docs/devcontainers/devcontainer-cli
 # https://github.com/devcontainers/cli
 # curl -fsSL https://raw.githubusercontent.com/devcontainers/cli/main/scripts/install.sh | sh
 DEVCONTAINER := docker
