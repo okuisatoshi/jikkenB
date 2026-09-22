@@ -1,6 +1,5 @@
 # 情報工学実験B -- LLVMを用いた簡単なコンパイラの作成
 ```
-
 .
 ├── cfg.sh
 ├── .clangd
@@ -58,6 +57,7 @@
     └── tidwall_hashmap.h
 
 9 directories, 46 files
+```
 
 - `tidwall`ディレクトリ以下は[tidwall氏の標準Cによるハッシュ表の実装](https://github.com/tidwall/hashmap.c)でMITライセンスです
 - gzuidhof氏の[`coi-serviceworker.js`](https://github.com/gzuidhof/coi-serviceworker)はMITライセンスです
