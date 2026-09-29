@@ -10,15 +10,13 @@ int main() {
     i = 2;
     while (i < n) {
         if (xs[i]) {
-            int p;
-            p = i;
-            print p;
-            xs[p] = 0;
+            print i;
+            xs[i] = 0;
             int k;
-            k = p * p;
+            k = i * i;
             while (k < n) {
                 xs[k] = 0;
-                k = k + p;
+                k = k + i;
             }
         }
         i = i + 1;
