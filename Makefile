@@ -1,23 +1,19 @@
 CC := clang
-TARGET := $(shell llvm-config --host-target)
-# TARGET := x86_64-linux-gnu
-# TARGET := aarch64-linux-gnu
-# TARGET := wasm32-wasi
-CFLAGS := -Wall -std=c11 -g3 $(CFLAGS) -O0 -target $(TARGET) -static
+CFLAGS := -Wall -std=c11 -g3 $(CFLAGS) -O0 -static
 SHELL  := /bin/bash
 
 # Apple Container (MacOS) / WSL Containers (Windows11) の利用
-# 注: 現状wslc.exe (別名:container.exe)をWSL2から用いると遅くて使い物にならない
-#     jikkenBリポジトリをCドライブ配下に置いてPowerShellから用いるとよい
-#     Windows11用のgnu makeのインストール: winget install ezwinports.make
+# wslc.exe (別名:container.exe)を用いるときは
+# jikkenBリポジトリをCドライブ配下に置いてPowerShellから用いるとよい
+# Windows11用のgnu makeのインストール: winget install ezwinports.make
 CONTAINER := container
 
 # Dev Containersの利用
 # https://code.visualstudio.com/docs/devcontainers/devcontainer-cli
 # https://github.com/devcontainers/cli
 # curl -fsSL https://raw.githubusercontent.com/devcontainers/cli/main/scripts/install.sh | sh
-#DEVCONTAINER := docker
- DEVCONTAINER := podman
+DEVCONTAINER := docker
+# DEVCONTAINER := podman
 
 picoc: scan.o hashmap.o tidwall/tidwall_hashmap.o picoc.o
 	$(CC) $(CFLAGS) $^ -o $@
@@ -56,10 +52,14 @@ devcontainer-shell:
 smolvm-create:
 	smolvm machine create --nested --name picoc -s Smolfile
 
+smolvm-start:
+	smolvm machine start --name picoc
+
 smolvm-shell:
 	smolvm machine exec -ti --user $(shell id -u):$(shell id -g) --name picoc /bin/bash
+
 clean:
 	rm -rf *.o tidwall/*.o *~ picoc testscan a.out
 
-.PHONY: test wasmer asciinema zig build-container run-container devcontainer-up devcontainer-shell smolvm-create smolvm-shell clean
+.PHONY: test wasmer asciinema zig build-container run-container devcontainer-up devcontainer-shell smolvm-create smolvm-start smolvm-shell clean
 
