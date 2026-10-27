@@ -16,8 +16,8 @@ CONTAINER := container
 # https://code.visualstudio.com/docs/devcontainers/devcontainer-cli
 # https://github.com/devcontainers/cli
 # curl -fsSL https://raw.githubusercontent.com/devcontainers/cli/main/scripts/install.sh | sh
-DEVCONTAINER := docker
-# DEVCONTAINER := podman
+#DEVCONTAINER := docker
+ DEVCONTAINER := podman
 
 picoc: scan.o hashmap.o tidwall/tidwall_hashmap.o picoc.o
 	$(CC) $(CFLAGS) $^ -o $@
@@ -54,7 +54,7 @@ devcontainer-shell:
 	devcontainer exec --docker-path $(DEVCONTAINER) /bin/bash
 
 smolvm-create:
-	smolvm machine create --name picoc -s Smolfile
+	smolvm machine create --nested --name picoc -s Smolfile
 
 smolvm-shell:
 	smolvm machine exec -ti --user $(shell id -u):$(shell id -g) --name picoc /bin/bash
