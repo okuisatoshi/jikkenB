@@ -50,6 +50,7 @@ devcontainer-shell:
 	devcontainer exec --docker-path $(DEVCONTAINER) /bin/bash
 
 smolvm-create:
+	# MacOS: smolvm machine create --rosetta --name picoc -s Smolfile
 	smolvm machine create --nested --name picoc -s Smolfile
 
 smolvm-start:
